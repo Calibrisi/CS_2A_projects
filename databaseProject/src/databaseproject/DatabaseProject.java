@@ -10,7 +10,7 @@ public class DatabaseProject {
     static ArrayList animals = new ArrayList<Animal>();
 
     public static void readInList() throws Exception {
-        
+        animals.clear(); //we did this so each time it starts with a clean slate
         String homePath = System.getProperty("user.home"); 
         String filename = homePath + "/NetBeansProjects/databaseProject/src/databaseproject/ListOfCharacters";
         Scanner file = new Scanner(new File(filename));
@@ -23,10 +23,15 @@ public class DatabaseProject {
             int weight = Integer.parseInt(splitline[3]);
             int height = Integer.parseInt(splitline[4]);
             Animal temp = new Animal(name, species, age, weight, height);
-            System.out.println(temp);
             animals.add(temp);
         }
-        System.out.println("Done reading in file");
+        
+    }
+    
+    public static void printList() {
+        for (int i = 0; i < animals.size(); i++) {
+            System.out.println(animals.get(i));
+        }
     }
     
     public static void mainMenu() throws Exception {
@@ -38,49 +43,53 @@ public class DatabaseProject {
                     + "C: Search Menu \n"
                     + "X: Exit";
             choice = JOptionPane.showInputDialog(menu);
-            if(choice.equals("A"))
-                readInList();
-            if(choice.equals("B"))
-                displayMenu();
-            if(choice.equals("C"))
-                searchMenu();
+            switch(choice){
+                case "A": 
+                    readInList();
+                    printList();
+                    System.out.println("Done reading in file");
+                    break;
+                case "B": displayMenu(); break;
+                case "C": searchMenu(); break;
+                default: break; //invalid or X, do nothing
+            }
         }
     }
     
     public static void displayMenu() throws Exception {
         String choice = "";
             String menu = "Display Menu \n"
-                    + "A: Display 1 \n"
+                    + "A: Name Species and Age \n"
                     + "B: Display 2 \n"
                     + "C: Display 3 \n"
                     + "X: Exit";
             choice = JOptionPane.showInputDialog(menu);
-            if(choice.equals("A"))
-                System.out.println("Display 1");
-            if(choice.equals("B"))
-                System.out.println("Display 2");
-            if(choice.equals("C"))
-                System.out.println("Display 3");
+            switch(choice){
+                case "A": DisplayClass.NameSpeciesAge(animals); break;
+                case "B": System.out.println("Display 2"); break;
+                case "C": System.out.println("Display 3"); break;
+                default: break; //invalid or X, do nothing
+            }
     }
     
     public static void searchMenu() throws Exception {
         String choice = "";
             String menu = "Search Menu \n"
-                    + "A: Display 1 \n"
-                    + "B: Display 2 \n"
-                    + "C: Display 3 \n"
+                    + "A: Search 1 \n"
+                    + "B: Search 2 \n"
+                    + "C: Search 3 \n"
                     + "X: Exit";
             choice = JOptionPane.showInputDialog(menu);
-            if(choice.equals("A"))
-                System.out.println("Search 1");
-            if(choice.equals("B"))
-                System.out.println("Search 2");
-            if(choice.equals("C"))
-                System.out.println("Search 3");
+            switch(choice){
+                case "A": System.out.println("Search 1");; break;
+                case "B": System.out.println("Search 2");; break;
+                case "C": System.out.println("Search 3");; break;
+                default: break; //invalid or X, do nothing
+            }
     }
     
     public static void main(String[] args) throws Exception {
-//        readInList();
+        readInList();
         mainMenu();
     }
     
