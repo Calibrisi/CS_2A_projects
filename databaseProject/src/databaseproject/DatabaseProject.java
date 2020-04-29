@@ -41,6 +41,7 @@ public class DatabaseProject {
                     + "A: Read in Data \n"
                     + "B: Display Menu \n"
                     + "C: Search Menu \n"
+                    + "D: Sort Menu \n"
                     + "X: Exit";
             choice = JOptionPane.showInputDialog(menu);
             switch(choice){
@@ -51,6 +52,7 @@ public class DatabaseProject {
                     break;
                 case "B": displayMenu(); break;
                 case "C": searchMenu(); break;
+                case "D": sortMenu(); break;
                 default: break; //invalid or X, do nothing
             }
         }
@@ -60,14 +62,14 @@ public class DatabaseProject {
         String choice = "";
             String menu = "Display Menu \n"
                     + "A: Name Species and Age \n"
-                    + "B: Display 2 \n"
-                    + "C: Display 3 \n"
+                    + "B: Age Weight and Height \n"
+                    + "C: Name Species and Weight \n"
                     + "X: Exit";
             choice = JOptionPane.showInputDialog(menu);
             switch(choice){
                 case "A": DisplayClass.NameSpeciesAge(animals); break;
-                case "B": System.out.println("Display 2"); break;
-                case "C": System.out.println("Display 3"); break;
+                case "B": DisplayClass.AgeWeightHeight(animals); break;
+                case "C": DisplayClass.NameSpeciesWeight(animals); break;
                 default: break; //invalid or X, do nothing
             }
     }
@@ -75,15 +77,31 @@ public class DatabaseProject {
     public static void searchMenu() throws Exception {
         String choice = "";
             String menu = "Search Menu \n"
-                    + "A: Search 1 \n"
-                    + "B: Search 2 \n"
-                    + "C: Search 3 \n"
+                    + "A: By Name \n"
+                    + "B: By Species \n"
+                    + "C: Search all above min. age \n"
                     + "X: Exit";
             choice = JOptionPane.showInputDialog(menu);
             switch(choice){
-                case "A": System.out.println("Search 1");; break;
-                case "B": System.out.println("Search 2");; break;
-                case "C": System.out.println("Search 3");; break;
+                case "A": SearchClass.Name(animals); break;
+                case "B": SearchClass.Species(animals); break;
+                case "C": SearchClass.Age(animals); break;
+                default: break; //invalid or X, do nothing
+            }
+    }
+    
+    public static void sortMenu() throws Exception {
+        String choice = "";
+            String menu = "Sort Menu \n"
+                    + "A: By Name \n"
+                    + "B: By Species \n"
+                    + "C: By Age \n"
+                    + "X: Exit";
+            choice = JOptionPane.showInputDialog(menu);
+            switch(choice){
+                case "A": SortClass.Name(animals); break;
+                case "B": SortClass.Species(animals); break;
+                case "C": SortClass.Age(animals); break;
                 default: break; //invalid or X, do nothing
             }
     }
