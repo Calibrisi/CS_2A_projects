@@ -1,6 +1,8 @@
 package databaseproject;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -34,6 +36,18 @@ public class DatabaseProject {
         }
     }
     
+    public static void Save() throws Exception {
+        String homePath = System.getProperty("user.home"); 
+        String filename = homePath + "/NetBeansProjects/databaseProject/src/databaseproject/ListOfCharacters";
+        PrintWriter output = new PrintWriter(new FileWriter(filename));
+        
+        for (int i = 0; i < animals.size(); i++) {
+            output.println(animals.get(i));
+        }
+        System.out.println("File saved");
+        output.close();
+    }
+    
     public static void mainMenu() throws Exception {
         String choice = "";
         while(!choice.equals("X")){
@@ -44,6 +58,7 @@ public class DatabaseProject {
                     + "D: Sort Menu \n"
                     + "E: Add Entry \n"
                     + "F: Delete Entry \n"
+                    + "G: save \n"
                     + "X: Exit";
             choice = JOptionPane.showInputDialog(menu);
             switch(choice){
@@ -57,6 +72,7 @@ public class DatabaseProject {
                 case "D": sortMenu(); break;
                 case "E": AddAndDelete.Add(animals); break;
                 case "F": AddAndDelete.Delete(animals); break;
+                case "G": Save(); break;
                 default: break; //invalid or X, do nothing
             }
         }
