@@ -42,6 +42,8 @@ public class DatabaseProject {
                     + "B: Display Menu \n"
                     + "C: Search Menu \n"
                     + "D: Sort Menu \n"
+                    + "E: Add Entry \n"
+                    + "F: Delete Entry \n"
                     + "X: Exit";
             choice = JOptionPane.showInputDialog(menu);
             switch(choice){
@@ -53,6 +55,8 @@ public class DatabaseProject {
                 case "B": displayMenu(); break;
                 case "C": searchMenu(); break;
                 case "D": sortMenu(); break;
+                case "E": AddAndDelete.Add(animals); break;
+                case "F": AddAndDelete.Delete(animals); break;
                 default: break; //invalid or X, do nothing
             }
         }
