@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import org.jfugue.player.Player;
 
 public class DatabaseProject {
     
@@ -38,7 +39,7 @@ public class DatabaseProject {
     
     public static void Save() throws Exception {
         String homePath = System.getProperty("user.home"); 
-        String filename = homePath + "/NetBeansProjects/databaseProject/src/databaseproject/ListOfCharacters";
+        String filename = homePath + "/NetBeansProjects/databaseProject/src/databaseproject/backup";
         PrintWriter output = new PrintWriter(new FileWriter(filename));
         
         for (int i = 0; i < animals.size(); i++) {
@@ -58,7 +59,8 @@ public class DatabaseProject {
                     + "D: Sort Menu \n"
                     + "E: Add Entry \n"
                     + "F: Delete Entry \n"
-                    + "G: save \n"
+                    + "G: Change Entry \n"
+                    + "H: Save \n"
                     + "X: Exit";
             choice = JOptionPane.showInputDialog(menu);
             switch(choice){
@@ -72,7 +74,8 @@ public class DatabaseProject {
                 case "D": sortMenu(); break;
                 case "E": AddAndDelete.Add(animals); break;
                 case "F": AddAndDelete.Delete(animals); break;
-                case "G": Save(); break;
+                case "G": ChangeClass.Change(animals); break;
+                case "H": Save(); break;
                 default: break; //invalid or X, do nothing
             }
         }
@@ -127,6 +130,8 @@ public class DatabaseProject {
     }
     
     public static void main(String[] args) throws Exception {
+        Player music = new Player();
+        music.play("E E F F G A B");
         readInList();
         mainMenu();
     }
